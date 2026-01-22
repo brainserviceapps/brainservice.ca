@@ -9,31 +9,96 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #f5f7fa;
-      color: #333;
-      line-height: 1.6;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    nav {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav a {
+      color: #cfd8dc;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #64ffda;
     }
 
     .container {
       max-width: 900px;
-      margin: 40px auto;
+      margin: 60px auto;
       padding: 40px;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
-    h1, h2, h3 {
-      color: #222;
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #64ffda;
+      font-size: 1.2rem;
+    }
+
+    h3 {
+      margin-top: 20px;
+      font-size: 1.05rem;
+    }
+
+    p, li {
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
 
     ul {
       margin-left: 20px;
     }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #b0bec5;
+    }
   </style>
 </head>
 
 <body>
+  <nav>
+    <div class="logo">Brainservice</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+    </ul>
+  </nav>
+
   <div class="container">
     <h1>Privacy Policy</h1>
     <p><strong>Last updated:</strong> January 2026</p>
@@ -56,96 +121,88 @@
 
     <h3>3.1 Information You Provide</h3>
     <p>
-      Some Services may allow users to create accounts, sign in using third-party
-      authentication providers (such as Google or Apple), or contact us. In such cases,
-      we may collect information such as:
+      Some Services may allow account creation, third-party sign-in (such as Google
+      or Apple), or user communication. Information collected may include:
     </p>
     <ul>
       <li>Name or display name</li>
       <li>Email address</li>
-      <li>Authentication identifiers provided by third-party sign-in services</li>
+      <li>Authentication identifiers provided by sign-in providers</li>
     </ul>
 
     <h3>3.2 Automatically Collected Information</h3>
     <p>
-      When using our Services, certain information may be collected automatically,
-      including:
+      When using our Services, certain information may be collected automatically:
     </p>
     <ul>
       <li>Device type, operating system, and app version</li>
       <li>Usage and interaction data</li>
       <li>Crash reports and performance diagnostics</li>
-      <li>Advertising identifiers (for non-child-directed apps only)</li>
+      <li>Advertising identifiers (non-child-directed apps only)</li>
     </ul>
 
     <h2>4. Child-Directed (Kids) Applications</h2>
     <p>
-      Some of our Services may be directed toward children under the age of 13.
-      For these child-directed apps:
+      Some Services may be intended for children under the age of 13. For these apps:
     </p>
     <ul>
-      <li>We do <strong>not knowingly collect personal information</strong> from children.</li>
-      <li>We do <strong>not require account creation</strong> for children unless explicitly stated.</li>
-      <li>We do <strong>not use personalized advertising</strong>.</li>
-      <li>Any analytics or ads used are configured to comply with applicable
-          child-privacy laws, including COPPA and Google Play Families policies.</li>
+      <li>We do <strong>not knowingly collect personal information</strong> from children</li>
+      <li>We do <strong>not require account creation</strong> for children unless explicitly stated</li>
+      <li>We do <strong>not use personalized advertising</strong></li>
+      <li>Any analytics or ads comply with COPPA and Google Play Families policies</li>
     </ul>
 
     <p>
-      If we ever collect personal information from children, it will be done only
-      with verifiable parental consent and clearly disclosed within the app.
+      If personal information is ever collected from a child, it will only occur
+      with verifiable parental consent and clear disclosure.
     </p>
 
     <h2>5. How We Use Information</h2>
-    <p>
-      Information collected may be used to:
-    </p>
     <ul>
-      <li>Provide and maintain the Services</li>
-      <li>Improve app functionality and user experience</li>
-      <li>Analyze app usage and performance</li>
-      <li>Serve advertisements (non-child-directed apps only)</li>
+      <li>Provide and maintain Services</li>
+      <li>Improve functionality and user experience</li>
+      <li>Analyze performance and usage trends</li>
+      <li>Serve ads in non-child-directed apps</li>
       <li>Provide customer support</li>
-      <li>Comply with legal obligations</li>
+      <li>Comply with legal requirements</li>
     </ul>
 
     <h2>6. Third-Party Services</h2>
     <p>
-      Our Services may use third-party services such as analytics providers,
+      Our Services may integrate third-party services such as analytics providers,
       advertising networks, authentication services, and cloud infrastructure
-      (for example: Google Firebase, Google AdMob, Google Sign-In, Apple Sign-In).
+      (e.g., Firebase, Google AdMob, Google Sign-In, Apple Sign-In).
     </p>
     <p>
-      These third-party services may collect information in accordance with their
-      own privacy policies. We encourage users and parents to review those policies.
+      These services operate under their own privacy policies.
     </p>
 
     <h2>7. Data Security and Retention</h2>
     <p>
-      We take reasonable measures to protect information from unauthorized access
-      or disclosure. Information is retained only as long as necessary to fulfill
-      the purposes described in this policy or as required by law.
+      Reasonable technical and organizational measures are used to protect data.
+      Information is retained only as long as necessary or legally required.
     </p>
 
     <h2>8. User Rights</h2>
     <p>
-      Depending on your location, you may have rights to access, correct, or delete
-      your personal information. Requests can be made by contacting us.
+      Depending on jurisdiction, users may request access, correction, or deletion
+      of personal information by contacting us.
     </p>
 
-    <h2>9. Changes to This Policy</h2>
+    <h2>9. Policy Updates</h2>
     <p>
-      We may update this Privacy Policy from time to time. Any changes will be posted
-      on this page with an updated effective date.
+      This policy may be updated periodically. Changes will be reflected on this page.
     </p>
 
-    <h2>10. Contact Us</h2>
+    <h2>10. Contact</h2>
     <p>
-      If you have questions or concerns about this Privacy Policy, please contact us at:
+      Questions regarding this Privacy Policy may be directed to:
+      <br><strong>support@brainservice.ca</strong>
     </p>
-    <p>
-      <strong>Email:</strong> support@brainservice.ca
-    </p>
+
+    <footer>
+      © Brainservice Incorporated
+    </footer>
   </div>
 </body>
 </html>
