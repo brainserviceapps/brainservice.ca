@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Brainservice Apps</title>
+  <title>Contact — Brainservice Incorporated</title>
 
   <style>
     body {
@@ -21,6 +21,12 @@
       align-items: center;
     }
 
+    nav .logo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -32,6 +38,11 @@
     nav a {
       color: #cfd8dc;
       text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #64ffda;
     }
 
     .container {
@@ -40,13 +51,25 @@
       padding: 40px;
       background: rgba(255, 255, 255, 0.06);
       border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #e0e0e0;
+      font-size: 1rem;
+      line-height: 1.6;
     }
   </style>
 </head>
 
 <body>
   <nav>
+    <div class="logo">Brainservice</div>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -57,7 +80,8 @@
   <div class="container">
     <h1>Contact Us</h1>
     <p>
-      For inquiries related to our applications or services, please contact us at:
+      If you have questions about our applications, privacy practices,
+      or need support, please contact us at:
     </p>
     <p>
       <strong>Email:</strong> support@brainservice.ca
