@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps | Brainservice Incorporated</title>
+<meta name="description" content="Explore apps created by Brainservice Incorporated for iPhone, iPad and Android.">
+<style>
+:root{--text:#111827;--muted:#6b7280;--light:#f5f7fa;--border:#e5e7eb;--blue:#2563eb;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1100px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:21px;font-weight:700}.brand span{color:var(--blue)}
+.back{font-size:14px;color:var(--muted)}
+.hero{max-width:900px;margin:auto;padding:68px 24px 42px;text-align:center}
+.hero h1{margin:0 0 12px;font-size:clamp(36px,6vw,54px);line-height:1.1;letter-spacing:-1.8px}
+.hero p{max-width:650px;margin:auto;color:var(--muted);font-size:18px}
+.nav-wrap{max-width:1100px;margin:auto;padding:0 24px 30px}
+.app-nav{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.app-nav a{flex:0 0 auto;background:var(--light);border:1px solid var(--border);border-radius:999px;padding:7px 13px;font-size:13px;color:#4b5563;white-space:nowrap}
+.app-nav a:hover{background:#eff6ff;border-color:#bfdbfe;color:var(--blue)}
+.apps{max-width:900px;margin:auto;padding:0 24px 80px}
+.card{position:relative;display:grid;grid-template-columns:112px 1fr;gap:28px;padding:30px;margin-bottom:22px;border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.06);scroll-margin-top:100px}
+.icon{width:112px;height:112px;border-radius:24px;object-fit:cover;background:var(--light);box-shadow:0 4px 14px rgba(0,0,0,.1)}
+h2{margin:0 0 7px;font-size:25px;line-height:1.25;letter-spacing:-.5px}
+.desc{margin:0 0 20px;color:var(--muted);font-size:15px;line-height:1.65}
+.buttons{display:flex;flex-wrap:wrap;gap:10px}
+.store{display:inline-flex;align-items:center;gap:9px;min-width:155px;padding:10px 15px;border-radius:9px;background:#050505;color:#fff;font-size:13px;font-weight:600}
+.store:hover{opacity:.88}.store svg{width:21px;height:21px;flex:none}
+.share{position:absolute;right:18px;top:17px;border:0;background:none;color:#9ca3af;cursor:pointer;font-size:13px}
+.share:hover{color:var(--blue)}
+footer{border-top:1px solid var(--border);text-align:center;padding:35px 24px;color:var(--muted);font-size:13px}
+@media(max-width:650px){
+.header-inner{padding:15px 18px}.hero{padding:50px 20px 35px}.hero h1{font-size:38px}
+.nav-wrap{padding-left:18px;padding-right:18px}.apps{padding-left:16px;padding-right:16px}
+.card{grid-template-columns:72px 1fr;gap:17px;padding:22px}.icon{width:72px;height:72px;border-radius:17px}
+h2{font-size:20px;padding-right:20px}.desc{grid-column:1/-1;margin-top:-4px;margin-bottom:16px}.buttons{grid-column:1/-1}
+.store{flex:1;min-width:140px}.share{top:13px;right:10px}
+}
+</style>
+</head>
+<body>
+<header><div class="header-inner">
+<a class="brand" href="/">Brainservice<span>.</span></a>
+<a class="back" href="/">← Back to Brainservice</a>
+</div></header>
+
+<main>
+<section class="hero">
+<h1>Our Apps</h1>
+<p>Explore mobile apps created by Brainservice Incorporated for iPhone, iPad and Android.</p>
+</section>
+<div class="nav-wrap"><nav class="app-nav" id="appNav"></nav></div>
+<section class="apps" id="apps"></section>
+</main>
+<footer>© 2026 Brainservice Incorporated</footer>
+
+<script>
+const FALLBACK_ICON = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><rect width="256" height="256" rx="52" fill="#f5f7fa"/><text x="128" y="140" text-anchor="middle" font-family="Arial" font-size="30" fill="#6b7280">APP</text></svg>')}`;
+
+/*
+ * Store artwork strategy
+ * ----------------------
+ * 1) For Android apps, use the real Google Play-hosted icon URL.
+ * 2) For Apple-only / missing-artwork entries, appleId lets the page load
+ *    official App Store artwork from Apple's public lookup endpoint.
+ * 3) If either store changes an artwork URL, the fallback prevents broken images.
+ */
+const APPS = [
+{
+ slug:"settle-up", name:"Settle Up! Claim Lawsuit Money",
+ icon:"https://play-lh.googleusercontent.com/XunDDRuaBfDZWbXn_67vcFt-8j-hTM_rK8gKw-_WQyVsTQNTevEvmenLsVWofy5eJiGzEeiBPjkeq6FBGyfmlhw=w512-h512",
+ description:"Find class action settlements, data breach claims, consumer refunds, and other settlement opportunities you may qualify for.",
+ appleId:"6760604035", ios:"https://apps.apple.com/us/app/settle-up-claim-lawsuit-money/id6760604035",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.settleup"
+},
+{
+ slug:"price-cruncher", name:"Price Cruncher",
+ icon:"https://play-lh.googleusercontent.com/zYD6bV9_p6sEeXelsNqqJCsZLhMkI_S1YNUtGTwFHNuf4kJTCts9BFKkYfEjoKyHQE59w4VWmP_7p3pzIcMYjA=w512-h512",
+ description:"Compare prices, calculate unit costs, track price history, manage shopping lists, and find the best deal before you buy.",
+ appleId:"6759057196", ios:"https://apps.apple.com/us/app/price-cruncher-price-compare/id6759057196",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.price.cruncher"
+},
+{
+ slug:"gridlocked-baseball", name:"Gridlocked: Baseball Trivia",
+ icon:"https://play-lh.googleusercontent.com/u1oDuFL3oBapMZz4VM_VB_l-gTKVPFHJMJ-LW9N5MT_O4bzWx8MeEeG1yjUUU8c3pT-0MYIEmkpb5u1ZJw3OVg=w512-h512",
+ description:"Test your MLB knowledge with daily 3×3 trivia grids featuring players, teams, stats, awards, and historic achievements.",
+ appleId:"6760622130", ios:"https://apps.apple.com/us/app/gridlocked-baseball-trivia/id6760622130",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.gridlocked.baseball"
+},
+{
+ slug:"polyword", name:"Polyword - Spelling Bee Puzzle",
+ icon:"https://play-lh.googleusercontent.com/_g6VfVTau7abJPfwkLDLyL_fA8ApCJ1ZLSMVAU_pa2QPjznm5itWOi4blVZ_UG2Hjpoar_OhIqejoIpDzDFZ9g=w512-h512",
+ description:"Find words and solve shape-based spelling puzzles across hundreds of handcrafted challenges. Play offline with no account required.",
+ appleId:"6760574434", ios:"https://apps.apple.com/us/app/polyword-spelling-bee-puzzle/id6760574434",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.polyword"
+},
+{
+ slug:"guess-it-up", name:"Guess It Up! Party Word Game",
+ icon:"https://play-lh.googleusercontent.com/pvGAfMDwYTX1Ehw-UfEEQnNE0bMHp9hiRZfwjXy6Ofi4uYAzEkB3WnF4DMgJnXenEfNgZoRssKa4zivqMfdDMA=w512-h512",
+ description:"A fast-paced party guessing game featuring charades, drawing, clues, and plenty of ways to bring friends together.",
+ appleId:"6760603564", ios:"https://apps.apple.com/us/app/guess-it-up-party-word-game/id6760603564",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.guessitup"
+},
+{
+ slug:"gridlocked-basketball", name:"Gridlocked: Basketball Trivia",
+ icon:"https://play-lh.googleusercontent.com/fEZcrhM4oB8BJ8m_S7gX7wgDesGdDYuPY26c3BeGFboO71RP_qXB1SEGqmDKUTWjXLQFfUtA3477CxzKKAvEMA=w512-h512",
+ description:"Challenge your basketball knowledge with daily trivia grids covering players, teams, statistics, awards, and achievements.",
+ appleId:"", ios:"",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.gridlocked.basketball"
+},
+{
+ slug:"gridlocked-football", name:"Gridlocked: Football Trivia",
+ icon:"https://play-lh.googleusercontent.com/rd90wHp6Jzs9ld2UKd1DL3tOA65MpHTHDWF_tQ9_bL0pofSSt6zBgGlvjZhLB-EfEW5YjUYOiVI6fWBdg_AJ=w512-h512",
+ description:"Put your NFL knowledge to the test with daily trivia grids covering players, teams, statistics, awards, and accomplishments.",
+ appleId:"", ios:"",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.gridlocked.football"
+},
+{
+ slug:"gridlocked-hockey", name:"Gridlocked: Hockey Trivia",
+ icon:"https://play-lh.googleusercontent.com/4IYkqLKj0AGr4QGSlC3H0iGkvvE8EPfy13DDHwDicjZPA3-xWqUJI693U44t9e6rOHEise4syJJAbfZnCJgyeQ=w512-h512",
+ description:"Test your hockey knowledge with challenging daily grids featuring players, teams, statistics, awards, and historic achievements.",
+ appleId:"", ios:"",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.gridlocked.hockey"
+},
+{
+ slug:"level-up-math", name:"Level Up Math",
+ icon:"https://play-lh.googleusercontent.com/r2Zuqd1zmuneoRY3XicbfGNtPddCMyYo0Jk5pFcTfwVgF8ujWAIxJ9uq4ktujUWC0Cq9rz1rIl8QYaDVqhjhX-w=w512-h512",
+ description:"Build math skills with quick, engaging flash cards and quizzes designed for Grades 1–8.",
+ appleId:"6760570133", ios:"https://apps.apple.com/us/app/level-up-math-quizzes-gr-1-8/id6760570133",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.level_up_math"
+},
+{
+ slug:"kidkredit", name:"KidKredit: Chores & Allowance",
+ icon:"https://play-lh.googleusercontent.com/PykRzW9wBX5Sy6ofPqgry0PBmQJE8grEdrSQ52XBPk8vEGzj25zJjf8jJ7OFUnKgLuh6Gzh6D5yvo880YeRFqw=w512-h512",
+ description:"Turn chores into motivation. Parents assign tasks, kids complete them, and rewards help build real-world habits and responsibility.",
+ appleId:"6764878533", ios:"https://apps.apple.com/us/app/kidkredit-chores-allowance/id6764878533",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.kid.kredit"
+},
+{
+ slug:"rise", name:"Rise: Daily Affirmations",
+ icon:"https://play-lh.googleusercontent.com/HLhcEkP247wHe0gX2eSzgyXR8u57_PaKCtV7PzLvE4uEyHF72v8OQTlJIGry9koHU-Wq-d1DDz2ecuoPwymWbeM=w512-h512",
+ description:"Build a positive daily ritual with personalized affirmations, mood check-ins, and guided rituals for every part of your day.",
+ appleId:"6796173743", ios:"https://apps.apple.com/us/app/rise-daily-affirmations/id6796173743",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.rise"
+},
+{
+ slug:"sharepay", name:"SharePay: Split Bills & Expenses",
+ icon:"https://play-lh.googleusercontent.com/VYAr9HOM_z2SCpz4pmSpzzl5lbQyQYq7SACvDo1INkWHfz7e0oBTLA6zX2AQZcho4QGXKtovkQITi03NYM3IPw=w512-h512",
+ description:"Split bills, track group expenses, and settle up with friends, roommates, travel companions, and family.",
+ appleId:"6779690045", ios:"https://apps.apple.com/us/app/sharepay-split-bills-expenses/id6779690045",
+ android:"https://play.google.com/store/apps/details?id=ca.brainservice.sharepay"
+},
+{
+ slug:"invoice-jet", name:"Invoice Maker: Invoice Jet",
+ icon:"",
+ description:"Create professional invoices and estimates, scan receipts, track expenses, manage clients, and get paid faster from your phone.",
+ appleId:"6773543463", ios:"https://apps.apple.com/us/app/invoice-maker-invoice-jet/id6773543463",
+ android:""
+},
+{
+ slug:"blacklist", name:"Blacklist! Forbidden Word Game",
+ icon:"",
+ description:"A fast party word game where players describe the target without saying any of the forbidden words.",
+ appleId:"6761231089", ios:"https://apps.apple.com/us/app/blacklist-forbidden-word-game/id6761231089",
+ android:""
+},
+{
+ slug:"2048-ultimate", name:"2048 Ultimate",
+ icon:"",
+ description:"A polished take on the classic 2048 puzzle. Slide, merge, strategize, and chase your highest score.",
+ appleId:"", ios:"",
+ android:""
+}
+];
+
+const APPLE_ICON=`<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.34 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.96-2.47 4.08zM12.03 7.25C11.88 5.02 13.69 3.18 15.72 3c.28 2.58-2.34 4.5-3.69 4.25z"/></svg>`;
+const PLAY_ICON=`<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.27 2.95 13.78 13.5 3.27 21.05C3.1 20.72 3 20.35 3 19.94V4.06c0-.41.1-.78.27-1.11z"/><path fill="#FBBC04" d="m14.5 14.22 2.68 2.68-10.55 5.98c-.53.3-1.02.25-1.42-.02L14.5 14.22z"/><path fill="#4285F4" d="m14.5 9.78 2.68-2.68-10.55-5.98c-.53-.3-1.02-.25-1.42.02L14.5 9.78z"/><path fill="#EA4335" d="m19.5 11.05-2.32-1.31-2.68 2.68 2.68 2.68 2.33-1.32c.87-.49.87-2.24-.01-2.73z"/></svg>`;
+
+function render(){
+ const nav=document.getElementById("appNav"), container=document.getElementById("apps");
+ APPS.forEach(app=>{
+   const n=document.createElement("a"); n.href="#"+app.slug; n.textContent=app.name; nav.appendChild(n);
+   const card=document.createElement("article"); card.className="card"; card.id=app.slug;
+   const buttons=[
+     app.ios?`<a class="store" href="${app.ios}" target="_blank" rel="noopener">${APPLE_ICON}<span>App Store</span></a>`:"",
+     app.android?`<a class="store" href="${app.android}" target="_blank" rel="noopener">${PLAY_ICON}<span>Google Play</span></a>`:""
+   ].join("");
+   card.innerHTML=`
+     <img class="icon" id="icon-${app.slug}" src="${app.icon || FALLBACK_ICON}" alt="${app.name} icon" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_ICON">
+     <div><h2>${app.name}</h2><p class="desc">${app.description}</p><div class="buttons">${buttons}</div></div>
+     <button class="share" onclick="shareApp('${app.slug}','${app.name.replace(/'/g,"\\'")}')">Share</button>`;
+   container.appendChild(card);
+
+   // Apple-only entries: replace fallback with official App Store artwork.
+   if(!app.icon && app.appleId) loadAppleArtwork(app);
+ });
+}
+
+async function loadAppleArtwork(app){
+ try{
+   const r=await fetch(`https://itunes.apple.com/lookup?id=${encodeURIComponent(app.appleId)}&country=us`);
+   if(!r.ok) return;
+   const data=await r.json();
+   const result=data.results && data.results[0];
+   if(!result) return;
+   const artwork=(result.artworkUrl512 || result.artworkUrl100 || "").replace(/100x100bb/,"512x512bb");
+   if(artwork){
+     const img=document.getElementById("icon-"+app.slug);
+     if(img) img.src=artwork;
+   }
+ }catch(e){}
+}
+
+async function shareApp(slug,name){
+ const url=location.origin+location.pathname+"#"+slug;
+ if(navigator.share){try{await navigator.share({title:name,text:"Check out "+name,url});}catch(e){}}
+ else{try{await navigator.clipboard.writeText(url);alert("App link copied to clipboard.");}catch(e){prompt("Copy this app link:",url);}}
+}
+
+render();
+</script>
+</body>
+</html>
